@@ -5,6 +5,9 @@ ARG BASE_IMAGE
 ARG USERNAME=docker
 ARG USER_UID=1000
 
+ENV TZ="America/Los_Angeles"
+ENV DEBIAN_FRONTEND=noninteractive
+
 # create user and add to sudoers
 RUN useradd -ms /bin/bash -u ${USER_UID} -U ${USERNAME}
 
@@ -45,6 +48,7 @@ RUN apt-get update \
     pkg-config \
     libcap-dev \
     libpcap-dev \
+    tzdata \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
